@@ -21,6 +21,18 @@ public class MenuController {
 
     private void readCoachName() {
         String name = inputView.readCoachName();
-        coach = new Coach(name);
+        while (true) {
+            try {
+                coach = new Coach(name);
+                break;
+            } catch (IllegalArgumentException e) {
+                name = printError(e.getMessage());
+            }
+        }
+    }
+
+    private String printError(String message) {
+        outputView.Error(message);
+        return inputView.againRead();
     }
 }

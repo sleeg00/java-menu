@@ -9,4 +9,8 @@ public class InputView {
         String name = Console.readLine();
         return name;
     }
+
+    public String againRead() {
+        return Console.readLine();
+    }
 }
