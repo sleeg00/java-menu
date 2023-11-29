@@ -1,6 +1,8 @@
 package menu.controller;
 
+import menu.model.Category;
 import menu.model.Coach;
+import menu.model.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -9,15 +11,24 @@ public class MenuController {
     private OutputView outputView;
 
     private Coach coach;
+    private MenuService menuService;
+    private Category category;
 
     public MenuController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        menuService = new MenuService();
     }
 
     public void start() {
         readCoachName();
         readCoachMenu();
+        printCategory();
+    }
+
+    private void printCategory() {
+        category = new Category(menuService.getCategory());
+        outputView.printCategory(category);
     }
 
     private void readCoachMenu() {
