@@ -17,6 +17,27 @@ public class MenuController {
 
     public void start() {
         readCoachName();
+        readCoachMenu();
+    }
+
+    private void readCoachMenu() {
+        Integer coachCount = coach.getCoachCount();
+        for (int i = 0; i < coachCount; i++) {
+            outputView.printMenu(coach.getName().get(i));
+            readNotEatMenu();
+        }
+    }
+
+    private void readNotEatMenu() {
+        String menuName = inputView.againRead();
+        while (true) {
+            try {
+                coach.setMenu(menuName);
+                break;
+            } catch (IllegalArgumentException e) {
+                menuName = printError(e.getMessage());
+            }
+        }
     }
 
     private void readCoachName() {
