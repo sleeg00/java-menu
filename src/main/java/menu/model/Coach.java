@@ -7,6 +7,7 @@ import static menu.model.Validate.INVALID_COACH_MINIMUM_LENGTH;
 import static menu.model.Validate.INVALID_MENU_MAXIMUM_COUNT;
 import static menu.model.Validate.INVALID_MENU_SAME;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -89,5 +90,41 @@ public class Coach {
 
     public List<String> getName() {
         return name;
+    }
+
+    public List<List<String>> getRandomMenu(Category category) {
+        List<String> name = getName();
+        List<List<String>> resultMenus = new ArrayList<>();
+        for (int i = 0; i < name.size(); i++) {
+            resultMenus.add(randomMenu(category, i));
+        }
+        return resultMenus;
+    }
+
+    private List<String> randomMenu(Category category, Integer number) {
+        List<String> categories = category.getName();
+        List<String> choiceMenus = new ArrayList<>();
+        int i = 0;
+        do {
+            String choiceMenu = getCategoryMenu(categories.get(i));
+            List<String> exceptMenu = menu.get(number);
+            if (!choiceMenus.contains(choiceMenu) && !exceptMenu.contains(choiceMenu)) {
+                choiceMenus.add(choiceMenu);
+                i++;
+            }
+        } while (i < categories.size());
+        return choiceMenus;
+    }
+
+    private String getCategoryMenu(String categoryName) {
+        String randomMenu = "";
+        for (Menu menuList : Menu.values()) {
+            List<String> menus = menuList.getMenu();
+            if (menuList.getName().equals(categoryName)) {
+                randomMenu = Randoms.shuffle(menus).get(0);
+                break;
+            }
+        }
+        return randomMenu;
     }
 }

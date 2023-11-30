@@ -1,5 +1,6 @@
 package menu.controller;
 
+import java.util.List;
 import menu.model.Category;
 import menu.model.Coach;
 import menu.model.MenuService;
@@ -24,6 +25,12 @@ public class MenuController {
         readCoachName();
         readCoachMenu();
         printCategory();
+        printMenu();
+    }
+
+    private void printMenu() {
+        List<List<String>> choiceMenus = coach.getRandomMenu(category);
+        outputView.printMenu(coach, choiceMenus);
     }
 
     private void printCategory() {

@@ -2,7 +2,7 @@ package menu.view;
 
 import java.util.List;
 import menu.model.Category;
-import org.w3c.dom.ls.LSOutput;
+import menu.model.Coach;
 
 public class OutputView {
     public void Error(String message) {
@@ -22,5 +22,18 @@ public class OutputView {
             System.out.print(" | " + categories.get(i));
         }
         System.out.println(" ]");
+        System.out.println("\n추천을 완료했습니다.");
+    }
+
+    public void printMenu(Coach coach, List<List<String>> choiceMenus) {
+        List<String> coachName = coach.getName();
+        for (int i = 0; i < coachName.size(); i++) {
+            List<String> coachMenu = choiceMenus.get(i);
+            System.out.print("[ " + coachName.get(i));
+            for (int j = 0; j < coachMenu.size(); j++) {
+                System.out.print(" | " + coachMenu.get(j));
+            }
+            System.out.println(" ]");
+        }
     }
 }
