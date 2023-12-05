@@ -153,4 +153,26 @@ public class ApplicationTest extends NsTest {
             assertThat(output()).doesNotContain("[ERROR]");
         });
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "우동,뇨끼,월날쌈", "김치치즈탕수육"
+    })
+    void 메뉴_입력_실패_테스트(String inputData) {
+        assertSimpleTest(() -> {
+            runException("토미,제임스", inputData);
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "우동,뇨끼", "하이라이스, 비빔밥", ""
+    })
+    void 메뉴_입력_성공_테스트(String inputData) {
+        assertSimpleTest(() -> {
+            runException("토미,제임스", inputData);
+            assertThat(output()).doesNotContain("[ERROR]");
+        });
+    }
 }
