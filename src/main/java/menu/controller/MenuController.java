@@ -1,5 +1,6 @@
 package menu.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import menu.model.Category;
 import menu.model.Coach;

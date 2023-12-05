@@ -10,7 +10,7 @@ public class OutputView {
     }
 
     public void printMenu(String name) {
-        System.out.println(name + "(이)가 못 먹는 메뉴를 입려해 주세요.");
+        System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
     }
 
     public void printCategory(Category category) {
@@ -22,7 +22,6 @@ public class OutputView {
             System.out.print(" | " + categories.get(i));
         }
         System.out.println(" ]");
-        System.out.println("\n추천을 완료했습니다.");
     }
 
     public void printMenu(Coach coach, List<List<String>> choiceMenus) {
@@ -35,5 +34,6 @@ public class OutputView {
             }
             System.out.println(" ]");
         }
+        System.out.println("\n추천을 완료했습니다.");
     }
 }

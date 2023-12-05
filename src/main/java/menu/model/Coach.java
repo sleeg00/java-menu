@@ -94,26 +94,31 @@ public class Coach {
 
     public List<List<String>> getRandomMenu(Category category) {
         List<String> name = getName();
+        System.out.println(name);
         List<List<String>> resultMenus = new ArrayList<>();
         for (int i = 0; i < name.size(); i++) {
-            resultMenus.add(randomMenu(category, i));
+            resultMenus.add(new ArrayList<>());
+        }
+        for (int i = 0; i < category.getName().size(); i++) {
+            for (int j = 0; j < name.size(); j++) {
+                resultMenus.get(j).add(randomMenu(category, i, j));
+            }
         }
         return resultMenus;
     }
 
-    private List<String> randomMenu(Category category, Integer number) {
+    private String randomMenu(Category category, Integer number, Integer nameNumber) {
         List<String> categories = category.getName();
         List<String> choiceMenus = new ArrayList<>();
-        int i = 0;
+        String choiceMenu = "";
         do {
-            String choiceMenu = getCategoryMenu(categories.get(i));
-            List<String> exceptMenu = menu.get(number);
+            choiceMenu = getCategoryMenu(categories.get(number));
+            List<String> exceptMenu = menu.get(nameNumber);
             if (!choiceMenus.contains(choiceMenu) && !exceptMenu.contains(choiceMenu)) {
-                choiceMenus.add(choiceMenu);
-                i++;
+                break;
             }
-        } while (i < categories.size());
-        return choiceMenus;
+        } while (true);
+        return choiceMenu;
     }
 
     private String getCategoryMenu(String categoryName) {
