@@ -27,10 +27,28 @@ public class Coach {
         List<String> divideMenu = divideName(menu);
         validateCountMenu(divideMenu);
         validateSameMenu(divideMenu);
+        validateTrueMenu(divideMenu);
         if (this.menu == null) {
             this.menu = new ArrayList<>();
         }
         this.menu.add(divideMenu);
+    }
+
+    private void validateTrueMenu(List<String> divideMenu) {
+        for (int i = 0; i < divideMenu.size(); i++) {
+            if (!checkTrueMenu(divideMenu.get(i))) {
+                throw new IllegalArgumentException(Validate.INVALID_MENU_CONTAIN.getMessage());
+            }
+        }
+    }
+
+    private boolean checkTrueMenu(String menuName) {
+        for (Menu menuList : Menu.values()) {
+            if (menuList.getMenu().contains(menuName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void validateSameMenu(List<String> divideMenu) {
